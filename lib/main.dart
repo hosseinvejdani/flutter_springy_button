@@ -30,14 +30,15 @@ class MyHomePage extends StatelessWidget {
         width: 50,
         height: 50,
         direction: Direction.verticalUp,
-        action: () async => doWhat(),
+        action: () async => await toDoAction(),
       ),
     );
   }
 
-  Future<void> doWhat() async {
+  Future<void> toDoAction() async {
     await Future.delayed(
       const Duration(milliseconds: 250),
+      // ignore: avoid_print
       () => print('what to do!'),
     );
   }
@@ -143,6 +144,7 @@ class _SpringyButtonState extends State<SpringyButton> with TickerProviderStateM
   }
 
   Future<void> _playAnimation() async {
+    // ignore: avoid_print
     print('play animation!'); // NOTE: dont remove this. becouse
     try {
       await _controller.forward().orCancel;
