@@ -87,7 +87,6 @@ class SpringyButton extends StatefulWidget {
     action = action ?? () {};
     duration = duration ?? const Duration(milliseconds: 700);
     distance = distance ?? 50.0;
-    bgColor = bgColor ?? Colors.redAccent;
     forwardCurve = forwardCurve ?? Curves.elasticOut;
     backwardCurve = backwardCurve ?? Curves.easeInBack;
   }
