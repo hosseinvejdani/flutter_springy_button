@@ -30,8 +30,15 @@ class MyHomePage extends StatelessWidget {
         width: 50,
         height: 50,
         direction: Direction.verticalUp,
-        action: () => print('what to do!'),
+        action: () async => doWhat(),
       ),
+    );
+  }
+
+  Future<void> doWhat() async {
+    await Future.delayed(
+      const Duration(milliseconds: 250),
+      () => print('what to do!'),
     );
   }
 }
@@ -113,6 +120,7 @@ class _SpringyButtonState extends State<SpringyButton> with TickerProviderStateM
         ),
       ),
     );
+
     offsetBackward = Tween<double>(
       begin: c * widget.distance!,
       end: 0,
@@ -135,13 +143,15 @@ class _SpringyButtonState extends State<SpringyButton> with TickerProviderStateM
   }
 
   Future<void> _playAnimation() async {
+    print('play animation!'); // NOTE: dont remove this. becouse
     try {
       await _controller.forward().orCancel;
-      _controller.reset();
-      widget.action!();
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
+    } finally {
+      _controller.reset();
     }
+    widget.action!();
   }
 
   @override
